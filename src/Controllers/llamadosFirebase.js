@@ -27,17 +27,15 @@ const updatePeritos = async (id, obj) => {
 
 // READ
 const getPer= async ()  => {
-    const colRef =  collection(db, 'Peritos');
-    const result = await getDocs(query(colRef));
-    return getArrayFromCollection(result)
+  const peritos= await axios.get('https://grupoaguila.onrender.com/peritos')
+  console.log('peritos', peritos)
+    return peritos.data
+
 }
 
 const getCases= async ()  => {
-    const colRef = collection(db, 'Casos');
-    
-    const result = await getDocs(query(colRef));
-    
-    return getArrayFromCollection(result);
+  const casos= await axios.get("https://grupoaguila.onrender.com/casos")
+  return casos.data
 }
 
 // READ WITH WHERE

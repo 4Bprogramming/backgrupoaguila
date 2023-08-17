@@ -2,49 +2,49 @@ const{Peritos, Casos}=require('../db.js')
 const { getPer, getCases } = require('./llamadosFirebase.js')
 //GET
 const traerTodosLosPeritos=async(req, res, next)=>{
-      const peritosFirebase= await getPer()
-      const cantidadPeritos=peritosFirebase.length
-      console.log('peritos de firebase=>', cantidadPeritos);
-      const peritoCreado = await Peritos.bulkCreate(
-        peritosFirebase.map(e=>{
-          return{
-            nombre:e.nombre,
-            email:e.email,
-            rol: e.rol,
-            celular: e.celular
-          }
+  const peritosFirebase= await getPer()
+  const cantidadPeritos=peritosFirebase?.length
+  console.log('peritos de firebase=>', cantidadPeritos);
+  const peritoCreado = await Peritos.bulkCreate(
+    peritosFirebase?.map(e=>{
+      return{
+        nombre:e.nombre,
+        email:e.email,
+        rol: e.rol,
+        celular: e.celular
+      }
 
-      }));
-      console.log('enviados a la BD', peritoCreado);
-      res.status(201).send({ message: "Perito creado con exito!" });
-      
+  }));
+  console.log('enviados a la BD', peritoCreado);
+  res.status(201).send({ message: "Perito creado con exito!" });
+  
 }
 const traerTodosLosCasos=async(req, res, next)=>{
-      const casosFirebase= await getCases()
-      const cantidadCasos=casosFirebase.length
-      // console.log('casos de firebase=>', casosFirebase);
-      const casoCreado = await Casos.bulkCreate(
-        casosFirebase.map(e=>{
-          return{
-           localidad:e.localidad,
-            Vencimiento:e.Vencimiento,
-            notas: e.notas,
-            celular: e.celular,
-            direccion: e.direccion,
-            Marca:e.Marca,
-            Patente:e.Patente,
-            Nombre: e.Nombre,
-            perito: e.perito,
-            Compañia: e.Compañia,
-            estado: e.estado,
-            Numero: e.Numero,
-            taller:e.taller
-          }
+  const casosFirebase= await getCases()
+  const cantidadCasos=casosFirebase?.length
+  // console.log('casos de firebase=>', casosFirebase);
+  const casoCreado = await Casos.bulkCreate(
+    casosFirebase?.map(e=>{
+      return{
+       localidad:e.localidad,
+        Vencimiento:e.Vencimiento,
+        notas: e.notas,
+        celular: e.celular,
+        direccion: e.direccion,
+        Marca:e.Marca,
+        Patente:e.Patente,
+        Nombre: e.Nombre,
+        perito: e.perito,
+        Compañia: e.Compañia,
+        estado: e.estado,
+        Numero: e.Numero,
+        taller:e.taller
+      }
 
-      }));
-      // console.log('enviados a la BD', cantidadCasos);
-      res.status(201).send({ message: "Casos creado con exito!" });
-      
+  }));
+  // console.log('enviados a la BD', cantidadCasos);
+  res.status(201).send({ message: "Casos creado con exito!" });
+  
 }
 const peritos = async (req, res, next)=>{
     try {
