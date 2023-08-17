@@ -1,6 +1,6 @@
 const { collection, getFirestore, getDocs, query, doc, getDoc, addDoc, deleteDoc, updateDoc, setDoc, where} =require( "firebase/firestore");
  const{ db } =require( "./comotuquieras");
-
+const axios = require('axios');
 
 // CREATE
 const createPer = async(obj) => {
